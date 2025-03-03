@@ -42,21 +42,21 @@ const thongbao = () => {
   );
 };
 
-const ScanScreen = () => {
+const ScanScreen = ({navigation}) => {
     return (
-      <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: 'https://example.com/juice-image.jpg' }} // Thay thế bằng URL hình ảnh thực tế của chai nước trái cây
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Laurens's Orange Juice</Text>
-        <Text style={styles.description}>100% Organic</Text>
-        <Text style={styles.volume}>1L</Text>
-      </View>
-    </View>
+      <View style={styles.scanContainer}>
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
+                <Text style={styles.backButtonText}>{'<'}</Text>
+            </TouchableOpacity>
+            <Image source={require('./assets/background.png')} style={styles.scanImage} />
+            <View style={styles.productContainer}>
+                <Image source={require('./assets/background.png')} style={styles.productImage} />
+                <Text style={styles.productName}>Orange Juice   </Text>
+                <TouchableOpacity style={styles.addButton} onPress={() => console.log('Add product')}>
+                    <Text style={styles.addButtonText}>+</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     );
 };
 
@@ -233,36 +233,66 @@ const styles = StyleSheet.create({
         color: '#007bff',
         fontSize: 16,
     },
-    screencontainer: {
+    scanContainer: {
       flex: 1,
-      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
+    },
+    backButton: {
+      position: 'absolute',
+      top: 20,
+      left: 20,
+      zIndex: 1,
+      backgroundColor: '#FFFFFFB2',
+      borderRadius: 5,
+      width: 45,
+      height: 44,
       justifyContent: 'center',
-      backgroundColor: '#f5f5f5', // Màu nền
-    },
-    imageContainer: {
-      borderWidth: 2,
-      borderColor: '#ccc',
-      borderRadius: 10,
-      overflow: 'hidden',
-      marginBottom: 20,
-    },
-    image: {
-      width: 200, // Kích thước hình ảnh
-      height: 300,
-    },
-    labelContainer: {
       alignItems: 'center',
     },
-    label: {
-      fontSize: 24,
-      fontWeight: 'bold',
+    backButtonText: {
+        fontSize: 24,
+        color: '#5A6CF3',
     },
-    description: {
-      fontSize: 16,
-      color: '#888',
+    scanImage: {
+      width: '100%',
+      height:750,
+      alignSelf: 'center',
+      position: 'relative',
     },
-    volume: {
-      fontSize: 16,
+    productContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 20,
+      backgroundColor: '#fff',
+      borderRadius: 10,
+      marginHorizontal: 20,
+      marginTop: 20,
+      position: 'absolute',
+      marginTop:650,
+      marginLeft:85
+    },
+    productImage: {
+      width: 50,
+      height: 50,
+      marginRight: 10,
+    },
+    productName: {
+        fontSize: 18,
+        color: '#333',
+    },
+    addButton: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 45,
+      height: 44,
+      backgroundColor: '#5A6CF3',
+      padding: 10,
+      borderRadius: 5,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontSize: 16,
     },
 });
 
